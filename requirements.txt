@@ -1,6 +1,6 @@
 Flask
 Flask-Cors
 langchain
-waitress
+gunicorn
 python-dotenv
 openai
