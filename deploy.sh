@@ -4,4 +4,4 @@ pip install --upgrade pip
 
 pip install -r requirements.txt
 
-gunicorn app:app
+waitress-serve --port=5126 app:app
