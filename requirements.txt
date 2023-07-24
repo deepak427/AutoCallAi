@@ -3,4 +3,4 @@ Flask-Cors==4.0.0
 langchain==0.0.229
 waitress==2.1.2
 python-dotenv==1.0.0
---upgrade urllib3
+urllib3==2.0.4
