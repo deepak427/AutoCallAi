@@ -1,0 +1,12 @@
+{
+    "name": "auto-call-ai",
+    "version": "1.0.0",
+    "scripts": {
+      "start": "python app.py",
+      "postinstall": "pip install -r requirements.txt -t ./python/lib/python3.9/site-packages"
+    },
+    "dependencies": {
+      "flask": "^2.0.0"
+    }
+  }
+  
