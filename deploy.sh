@@ -4,7 +4,7 @@ pip install --upgrade pip
 
 pip install virtualenv
 
-virtualenv --python=/usr/bin/python3.10.7 my-env
+virtualenv --no-site-packages my-env
 
 source my-env/bin/activate
 
