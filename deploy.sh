@@ -2,9 +2,7 @@
 
 pip install --upgrade pip
 
-pip install virtualenv
-
-virtualenv --no-site-packages my-env
+python3 -m venv venv_name
 
 source my-env/bin/activate
 
