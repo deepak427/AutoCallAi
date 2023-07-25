@@ -2,6 +2,8 @@
 
 pip install --upgrade pip
 
-pip install -r requirements.txt
+virtualenv --python=/usr/bin/python3.10.7 my-env
 
-waitress-serve --port=5126 app:app
+source my-env/bin/activate
+
+pip install -r requirements.txt
