@@ -1,7 +1,5 @@
 #!/bin/bash
 
-C:/Python/python.exe -m pip install --upgrade pip
+/opt/render/project/src/.venv/bin/python -m pip install --upgrade pip
 
 pip install -r requirements.txt
-
-waitress-serve --port=5126 app:app
