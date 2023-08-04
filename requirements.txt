@@ -4,3 +4,4 @@ langchain
 waitress
 python-dotenv
 openai
+gunicorn
