@@ -12,18 +12,44 @@ CORS(app)
 load_dotenv()
 open_ai_api_key = os.getenv("OPENAI_API_KEY")
 
-# AI promt
-template = """You are an AI whose work is to know the name and reason of the caller and provide these details to admin. But if the caller seems to be a scammer or very suspicious,
-ai have to warn admin about the risk, along with the name and reason of the caller. The conversation between the caller and AI is given in the following array [{previous_chat}].
-Ai should continues the conversation by outputting a single sentence. AI will not ask to much details of reason."""
+# AI promte
+
+template ="""[Context: You are an AI designed to assist the admin by handling caller information. Your primary task is to collect the caller's name and reason for contacting the admin. However, you also have to be vigilant for potential scammers or suspicious individuals.]
+
+AI: Hello, I am the AI assistant here to help you. Please provide me with the name and reason of the caller.
+
+Caller: [Caller provides their name and reason for contacting the admin.]
+
+AI: Thank you for sharing the information. If the caller seems legitimate, I will relay their details to the admin for further assistance.
+
+AI: However, if I detect any signs of potential scam or suspicious activity, I will promptly notify the admin about the risk, along with the name and reason provided by the caller.
+
+AI: To maintain security, I will not ask for extensive details about the reason. Please keep your responses concise.
+
+The most important points to always foolow is,
+when responding: ai will always say the exact sentence "goodby, admin will contact you soon. exit" after knowing details of caller. .
+
+[Admin's instructions: When responding, make sure to provide a single sentence continuation of the conversation based on the context and previous_chat provided in the JSON array.]
+
+'previous_chat' array:
+{previous_chat}
+"""
 
 # Initialize language chain
 prompt = PromptTemplate(input_variables=["previous_chat"], template=template)
 chatgpt_chain = LLMChain(llm=OpenAI(temperature=0), prompt=prompt)
 
+@app.route('/', methods=['GET'])
+def ai():
+    try:
+        result = {'message': "Welcome to Spam-Jam"}
+        return jsonify(result), 200
+    except Exception as e:
+        error_msg = str(e)
+        return jsonify({'error': error_msg}), 400
 
-@app.route('/api/myendpoint', methods=['POST'])
-def my_endpoint():
+@app.route('/api/aiResponse', methods=['POST'])
+def ai_response():
     try:
         data = request.get_json()
         previous_chat = data.get('previous', "")
