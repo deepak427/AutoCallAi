@@ -1,6 +1,6 @@
 Flask
 Flask-Cors
-langchain==0.0.125
+langchain
 waitress
 python-dotenv
 openai
